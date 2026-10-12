@@ -1,70 +1,173 @@
 <!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Architecture — Projet Leads</title>
-  <script>try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
-</head>
-<body data-page="architecture">
-  <div id="app-nav"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Architecture — Projet Leads</title>
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (!t && matchMedia("(prefers-color-scheme: dark)").matches)
+          t = "dark";
+        if (t) document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body data-page="architecture">
+    <div id="app-nav"></div>
 
-  <main class="main">
-    <div class="content">
+    <main class="main">
+      <div class="content">
+        <span class="eyebrow">03 · Architecture</span>
+        <h1>Comment le système est construit</h1>
+        <p class="lead">
+          Le parcours d'un lead, les couches de la solution et le rôle de chaque
+          technologie.
+        </p>
 
-      <span class="eyebrow">03 · Architecture</span>
-      <h1>Comment le système est construit</h1>
-      <p class="lead">Le parcours d'un lead, les couches de la solution et le rôle de chaque technologie.</p>
+        <h2 id="parcours">Le parcours d'un lead</h2>
+        <ol class="timeline">
+          <li>
+            <strong>Envoi du KIT</strong
+            ><span
+              >Un email HTML responsive est envoyé au client depuis la
+              plateforme d'emailing.</span
+            >
+          </li>
+          <li>
+            <strong>Clic vers la landing page</strong
+            ><span
+              >Le bouton du KIT mène à une page qui présente l'offre et un
+              formulaire.</span
+            >
+          </li>
+          <li>
+            <strong>Validation : le client devient un lead</strong
+            ><span
+              >Le formulaire est envoyé à l'API PHP, qui enregistre le contact
+              dans la base.</span
+            >
+          </li>
+          <li>
+            <strong>Gestion dans Leadit</strong
+            ><span
+              >Les leads sont consultés, suivis et exportés depuis l'interface
+              Nuxt.</span
+            >
+          </li>
+          <li>
+            <strong>Livraison aux partenaires</strong
+            ><span
+              >Les partenaires qui achètent les leads les reçoivent via leur API
+              ou sous forme de fichier Excel.</span
+            >
+          </li>
+        </ol>
 
-      <h2 id="parcours">Le parcours d'un lead</h2>
-      <ol class="timeline">
-        <li><strong>Envoi du KIT</strong><span>Un email HTML responsive est envoyé au client depuis la plateforme d'emailing.</span></li>
-        <li><strong>Clic vers la landing page</strong><span>Le bouton du KIT mène à une page qui présente l'offre et un formulaire.</span></li>
-        <li><strong>Validation : le client devient un lead</strong><span>Le formulaire est envoyé à l'API PHP, qui enregistre le contact dans la base.</span></li>
-        <li><strong>Gestion dans Leadit</strong><span>Les leads sont consultés, suivis et exportés depuis l'interface Nuxt.</span></li>
-        <li><strong>Livraison aux partenaires</strong><span>Les partenaires qui achètent les leads les reçoivent, par exemple sous forme de fichier Excel.</span></li>
-      </ol>
+        <h2 id="couches">Les couches de la solution</h2>
+        <p class="muted">
+          Architecture client-serveur multi-couches (à valider avec ton
+          encadrant).
+        </p>
+        <div class="layers">
+          <div class="layer">
+            <span class="lv">UI</span>
+            <div>
+              <strong>Interface Nuxt</strong
+              ><span
+                >Ce que voit l'utilisateur : listes, boutons d'export, tableaux
+                de leads, ...</span
+              >
+            </div>
+          </div>
+          <div class="layer-link">↕</div>
+          <div class="layer">
+            <span class="lv">C</span>
+            <div>
+              <strong>Client Nuxt</strong
+              ><span
+                >Application SPA qui appelle l'API et prépare les données pour
+                l'interface.</span
+              >
+            </div>
+          </div>
+          <div class="layer-link">↕</div>
+          <div class="layer">
+            <span class="lv">API</span>
+            <div>
+              <strong>Contrôleur de routes PHP</strong
+              ><span
+                >Reçoit les requêtes, applique les règles, génère les exports et
+                dialogue avec la base.</span
+              >
+            </div>
+          </div>
+          <div class="layer-link">↕</div>
+          <div class="layer">
+            <span class="lv">BD</span>
+            <div>
+              <strong>Base de données MySQL</strong
+              ><span>Stockage des leads et des informations associées.</span>
+            </div>
+          </div>
+        </div>
 
-      <h2 id="couches">Les couches de la solution</h2>
-      <p class="muted">Architecture client-serveur multi-couches (à valider avec ton encadrant).</p>
-      <div class="layers">
-        <div class="layer"><span class="lv">UI</span><div><strong>Interface Nuxt</strong><span>Ce que voit l'utilisateur : tableaux de leads, filtres, boutons d'export.</span></div></div>
-        <div class="layer-link">↕</div>
-        <div class="layer"><span class="lv">C</span><div><strong>Client Nuxt</strong><span>Application SPA qui appelle l'API et prépare les données pour l'interface.</span></div></div>
-        <div class="layer-link">↕</div>
-        <div class="layer"><span class="lv">API</span><div><strong>Contrôleur de routes PHP</strong><span>Reçoit les requêtes, applique les règles, génère les exports et dialogue avec la base.</span></div></div>
-        <div class="layer-link">↕</div>
-        <div class="layer"><span class="lv">BD</span><div><strong>Base de données MySQL</strong><span>Stockage des leads et des informations associées.</span></div></div>
+        <h2 id="technos">Technologies</h2>
+        <div class="table-wrap">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Technologie</th>
+                <th>Rôle dans le projet</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>PHP</strong></td>
+                <td>Serveur, routes de l'API, landing pages</td>
+              </tr>
+              <tr>
+                <td><strong>Nuxt 3</strong></td>
+                <td>Client et interface de Leadit (mode SPA)</td>
+              </tr>
+              <tr>
+                <td><strong>MySQL</strong></td>
+                <td>Base de données des leads</td>
+              </tr>
+              <tr>
+                <td><strong>Landing pages</strong></td>
+                <td>PHP et Vue JS(sport LP)</td>
+              </tr>
+              <tr>
+                <td><strong>HTML / CSS en tableaux</strong></td>
+                <td>
+                  KITs emailing compatibles avec les clients de messagerie
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Boite email</strong></td>
+                <td>Plateforme d'envoi des KITs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note teal">
+          <strong>Pour la soutenance</strong>
+          Sur la slide « Architecture », garde les couches. Les noms des
+          technologies sont réservés à la slide « Technologie » pour éviter la
+          répétition.
+        </div>
       </div>
+    </main>
 
-      <h2 id="technos">Technologies</h2>
-      <div class="table-wrap">
-        <table class="t">
-          <thead><tr><th>Technologie</th><th>Rôle dans le projet</th></tr></thead>
-          <tbody>
-            <tr><td><strong>PHP</strong></td><td>Serveur, routes de l'API, landing pages</td></tr>
-            <tr><td><strong>Nuxt 3</strong></td><td>Client et interface de Leadit (mode SPA)</td></tr>
-            <tr><td><strong>MySQL</strong></td><td>Base de données des leads</td></tr>
-            <tr><td><strong>Composer</strong></td><td>Gestion des dépendances PHP (dont <code>phpdotenv</code> pour le fichier <code>.env</code>)</td></tr>
-            <tr><td><strong>PhpSpreadsheet</strong></td><td>Génération des exports Excel (.xlsx)</td></tr>
-            <tr><td><strong>HTML / CSS en tableaux</strong></td><td>KITs emailing compatibles avec les clients de messagerie</td></tr>
-            <tr><td><strong>ePigeon</strong></td><td>Plateforme d'envoi des KITs</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="note teal">
-        <strong>Pour la soutenance</strong>
-        Sur la slide « Architecture », garde les couches. Les noms des technologies sont réservés à la slide « Technologie » pour éviter la répétition.
-      </div>
-
-    </div>
-  </main>
-
-  <script src="assets/app.js"></script>
-</body>
+    <script src="assets/app.js"></script>
+  </body>
 </html>
