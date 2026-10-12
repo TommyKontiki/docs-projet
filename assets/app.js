@@ -9,8 +9,12 @@
     { id: "accueil", href: "index.html", label: "Accueil", num: "00" },
     { id: "commandes", href: "commandes.html", label: "Commandes", num: "01" },
     { id: "speech", href: "speech.html", label: "Speech", num: "02" },
-    { id: "architecture", href: "architecture.html", label: "Architecture", num: "03" },
-    { id: "depannage", href: "depannage.html", label: "Dépannage", num: "04" }
+    {
+      id: "architecture",
+      href: "architecture.html",
+      label: "Architecture",
+      num: "03",
+    },
   ];
 
   var current = document.body.getAttribute("data-page");
@@ -28,8 +32,16 @@
   if (host) {
     var links = PAGES.map(function (p) {
       return (
-        '<a class="nav-link' + (p.id === current ? " active" : "") + '" href="' + p.href + '">' +
-        '<span class="num">' + p.num + "</span>" + p.label + "</a>"
+        '<a class="nav-link' +
+        (p.id === current ? " active" : "") +
+        '" href="' +
+        p.href +
+        '">' +
+        '<span class="num">' +
+        p.num +
+        "</span>" +
+        p.label +
+        "</a>"
       );
     }).join("");
 
@@ -41,7 +53,9 @@
       '<aside class="sidebar" id="sidebar">' +
       '<a class="brand" href="index.html"><span class="brand-mark">L</span>' +
       '<span class="brand-text"><strong>Projet Leads</strong><span>Documentation</span></span></a>' +
-      '<nav class="nav"><div class="nav-label">Pages</div>' + links + "</nav>" +
+      '<nav class="nav"><div class="nav-label">Pages</div>' +
+      links +
+      "</nav>" +
       '<div class="sidebar-foot">' +
       '<button class="theme-btn" id="theme-btn"><span id="theme-ico"></span><span id="theme-txt"></span></button>' +
       '<div class="foot-note">Soutenance de mémoire</div></div></aside>';
@@ -66,7 +80,9 @@
     var paintTheme = function () {
       var dark = root.getAttribute("data-theme") === "dark";
       document.getElementById("theme-ico").textContent = dark ? "☀" : "☾";
-      document.getElementById("theme-txt").textContent = dark ? "Mode clair" : "Mode sombre";
+      document.getElementById("theme-txt").textContent = dark
+        ? "Mode clair"
+        : "Mode sombre";
     };
     document.getElementById("theme-btn").addEventListener("click", function () {
       var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
@@ -82,7 +98,10 @@
     var label = box.getAttribute("data-label") || "Terminal";
     var head = document.createElement("div");
     head.className = "cmd-head";
-    head.innerHTML = "<span>" + label + '</span><button class="copy" type="button">Copier</button>';
+    head.innerHTML =
+      "<span>" +
+      label +
+      '</span><button class="copy" type="button">Copier</button>';
     box.insertBefore(head, box.firstChild);
 
     head.querySelector(".copy").addEventListener("click", function (e) {
@@ -106,7 +125,10 @@
         ta.value = text;
         document.body.appendChild(ta);
         ta.select();
-        try { document.execCommand("copy"); done(); } catch (err) {}
+        try {
+          document.execCommand("copy");
+          done();
+        } catch (err) {}
         document.body.removeChild(ta);
       }
     });
@@ -115,7 +137,9 @@
   /* ---------- Filtre de commandes ---------- */
   var search = document.getElementById("filter");
   if (search) {
-    var items = Array.prototype.slice.call(document.querySelectorAll(".cmd-item"));
+    var items = Array.prototype.slice.call(
+      document.querySelectorAll(".cmd-item"),
+    );
     var counter = document.getElementById("count");
     search.addEventListener("input", function () {
       var q = search.value.trim().toLowerCase();
@@ -125,7 +149,9 @@
         it.hidden = !match;
         if (match) shown++;
       });
-      counter.textContent = q ? shown + " résultat" + (shown > 1 ? "s" : "") : "";
+      counter.textContent = q
+        ? shown + " résultat" + (shown > 1 ? "s" : "")
+        : "";
     });
   }
 
@@ -142,18 +168,22 @@
   var pills = document.querySelectorAll(".pill[data-target]");
   if (pills.length && "IntersectionObserver" in window) {
     var map = {};
-    pills.forEach(function (p) { map[p.getAttribute("data-target")] = p; });
+    pills.forEach(function (p) {
+      map[p.getAttribute("data-target")] = p;
+    });
     var obs = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (en) {
           if (en.isIntersecting) {
-            pills.forEach(function (p) { p.classList.remove("on"); });
+            pills.forEach(function (p) {
+              p.classList.remove("on");
+            });
             var p = map[en.target.id];
             if (p) p.classList.add("on");
           }
         });
       },
-      { rootMargin: "-20% 0px -70% 0px" }
+      { rootMargin: "-20% 0px -70% 0px" },
     );
     Object.keys(map).forEach(function (id) {
       var el = document.getElementById(id);
@@ -177,7 +207,9 @@
       if (out) out.textContent = "≈ " + fmt(sec) + " à l'oral";
     });
     var total = document.getElementById("total");
-    if (total) total.innerHTML = "Durée totale estimée : <strong>" + fmt(totalSec) + "</strong>";
+    if (total)
+      total.innerHTML =
+        "Durée totale estimée : <strong>" + fmt(totalSec) + "</strong>";
 
     function fmt(sec) {
       var m = Math.floor(sec / 60);
@@ -207,7 +239,8 @@
     };
     focusBtn.addEventListener("click", toggleFocus);
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && document.body.classList.contains("focus")) toggleFocus();
+      if (e.key === "Escape" && document.body.classList.contains("focus"))
+        toggleFocus();
     });
   }
 })();
