@@ -15,6 +15,7 @@
       label: "Architecture",
       num: "03",
     },
+    { id: "adresses", href: "adresses.html", label: "Adresses", num: "04" },
   ];
 
   var current = document.body.getAttribute("data-page");

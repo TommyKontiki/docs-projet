@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adresses — Projet Leads</title>
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (!t && matchMedia("(prefers-color-scheme: dark)").matches)
+          t = "dark";
+        if (t) document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body data-page="adresses">
+    <div id="app-nav"></div>
+
+    <main class="main">
+      <div class="content">
+        <span class="eyebrow">04 · Adresses</span>
+        <h1>Les adresses des projets</h1>
+        <p class="lead">
+          Une ligne par projet, avec son adresse en local et en production.
+        </p>
+
+        <div class="table-wrap">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Projet</th>
+                <th>Local</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <script src="assets/projets.js"></script>
+    <script>
+      (function () {
+        function esc(s) {
+          return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+          });
+        }
+        function cell(url) {
+          return (
+            '<a href="' +
+            esc(url) +
+            '" target="_blank" rel="noopener"><code>' +
+            esc(url) +
+            "</code></a>"
+          );
+        }
+        document.getElementById("rows").innerHTML = (window.PROJECTS || [])
+          .map(function (p) {
+            return (
+              "<tr><td><strong>" +
+              esc(p.nom) +
+              "</strong></td><td>" +
+              cell(p.local) +
+              "</td></tr>"
+            );
+          })
+          .join("");
+      })();
+    </script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
