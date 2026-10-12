@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projet Leads — Documentation</title>
+  <script>try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="accueil">
+  <div id="app-nav"></div>
+
+  <main class="main">
+    <div class="content">
+
+      <span class="eyebrow">Soutenance de mémoire</span>
+      <h1>Conception et déploiement d'un système de leads</h1>
+      <p class="lead">Collecte, gestion et distribution de leads : de l'email envoyé au client jusqu'à la livraison aux partenaires. Cette documentation regroupe tout ce qu'il faut pour lancer le projet et présenter le travail.</p>
+
+      <div class="cards">
+        <a class="card" href="commandes.html">
+          <span class="tag">01</span>
+          <h3>Commandes</h3>
+          <p>Lancer le serveur PHP, le client Nuxt, la base de données. Copier en un clic.</p>
+        </a>
+        <a class="card" href="speech.html">
+          <span class="tag">02</span>
+          <h3>Speech</h3>
+          <p>Le texte de la soutenance, section par section, avec la durée estimée à l'oral.</p>
+        </a>
+        <a class="card" href="architecture.html">
+          <span class="tag">03</span>
+          <h3>Architecture</h3>
+          <p>Le parcours d'un lead, les couches de la solution et les technologies utilisées.</p>
+        </a>
+        <a class="card" href="depannage.html">
+          <span class="tag">04</span>
+          <h3>Dépannage</h3>
+          <p>Les erreurs rencontrées pendant le projet et comment les résoudre.</p>
+        </a>
+      </div>
+
+      <h2>Démarrage rapide</h2>
+      <p class="muted">Deux terminaux : un pour le serveur PHP, un pour Nuxt. Le détail est dans la page <a href="commandes.html">Commandes</a>.</p>
+
+      <div class="cmd" data-label="Terminal 1 · serveur PHP">
+<pre><code><span class="c"># à adapter : chemin du projet PHP</span>
+cd chemin\vers\kontiki-ws-collections
+php -S 127.0.0.1:8200</code></pre>
+      </div>
+      <div class="cmd" data-label="Terminal 2 · client Nuxt">
+<pre><code><span class="c"># à adapter : chemin du projet Nuxt</span>
+cd chemin\vers\LEAD-IT
+npm run dev</code></pre>
+      </div>
+
+      <h2 id="avant">Checklist avant la soutenance</h2>
+      <p class="muted">Les cases restent cochées sur cet ordinateur.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox" data-key="serveur-php"><span>Serveur PHP lancé sur le port 8200</span></label></li>
+        <li><label><input type="checkbox" data-key="nuxt"><span>Client Nuxt lancé et accessible dans le navigateur</span></label></li>
+        <li><label><input type="checkbox" data-key="mysql"><span>Base MySQL démarrée et accessible</span></label></li>
+        <li><label><input type="checkbox" data-key="kit"><span>Un KIT de démonstration prêt à être ouvert</span></label></li>
+        <li><label><input type="checkbox" data-key="donnees"><span>Jeu de données de démonstration prêt (et un export Excel testé)</span></label></li>
+        <li><label><input type="checkbox" data-key="planb"><span>Plan B prêt : captures d'écran ou courte vidéo si la démo ne marche pas</span></label></li>
+        <li><label><input type="checkbox" data-key="speech"><span>Speech relu à voix haute, durée chronométrée</span></label></li>
+        <li><label><input type="checkbox" data-key="reseau"><span>Connexion, chargeur et adaptateur d'écran vérifiés</span></label></li>
+      </ul>
+
+      <h2 id="github">Mettre cette documentation en ligne (GitHub Pages)</h2>
+      <p class="muted">Le site est 100 % statique : aucun build, aucune dépendance.</p>
+      <ol class="steps">
+        <li><strong>Créer un dépôt GitHub</strong>Par exemple <code>documentation-leads</code>, en public.</li>
+        <li><strong>Envoyer les fichiers</strong>
+          <div class="cmd" data-label="Terminal · dans le dossier docs-projet">
+<pre><code>git init
+git add .
+git commit -m "Documentation du projet"
+git branch -M main
+git remote add origin https://github.com/&lt;utilisateur&gt;/&lt;depot&gt;.git
+git push -u origin main</code></pre>
+          </div>
+        </li>
+        <li><strong>Activer Pages</strong>Dans le dépôt : <em>Settings → Pages → Build and deployment → Deploy from a branch</em>, branche <code>main</code>, dossier <code>/ (root)</code>, puis <em>Save</em>.</li>
+        <li><strong>Ouvrir le site</strong>Après une minute ou deux : <code>https://&lt;utilisateur&gt;.github.io/&lt;depot&gt;/</code></li>
+      </ol>
+      <div class="note teal">
+        <strong>À savoir</strong>
+        Tous les liens du site sont relatifs, il fonctionne donc aussi bien à la racine qu'en sous-dossier. Pour ajouter une page au menu, il suffit d'ajouter une ligne dans <code>assets/app.js</code> (tableau <code>PAGES</code>).
+      </div>
+
+      <h2 id="lexique">Lexique</h2>
+      <dl class="lexique">
+        <dt>Lead</dt>
+        <dd>Contact qui a manifesté de l'intérêt pour un produit ou un service et laissé ses coordonnées.</dd>
+        <dt>KIT</dt>
+        <dd>Email HTML envoyé aux clients, avec un bouton qui mène vers une landing page.</dd>
+        <dt>Landing page</dt>
+        <dd>Page d'atterrissage avec un formulaire. La validation du formulaire transforme le client en lead.</dd>
+        <dt>Leadit</dt>
+        <dd>Projet de gestion des leads : consultation, suivi et export.</dd>
+        <dt>Partenaire</dt>
+        <dd>Entreprise qui achète les leads livrés.</dd>
+        <dt>ePigeon</dt>
+        <dd>Plateforme utilisée pour envoyer les KITs par email.</dd>
+      </dl>
+
+    </div>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

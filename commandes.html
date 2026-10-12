@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commandes — Projet Leads</title>
+  <script>try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="commandes">
+  <div id="app-nav"></div>
+
+  <main class="main">
+    <div class="content">
+
+      <span class="eyebrow">01 · Commandes</span>
+      <h1>Lancer le projet</h1>
+      <p class="lead">Toutes les commandes dans l'ordre. Les parties entre <code>&lt;chevrons&gt;</code> ou marquées « à adapter » dépendent de ton poste.</p>
+
+      <input id="filter" class="search" type="search" placeholder="Rechercher une commande (ex : composer, npm, mysql…)" autocomplete="off">
+      <div id="count" class="count"></div>
+
+      <div class="pills">
+        <a class="pill" data-target="prerequis" href="#prerequis">Prérequis</a>
+        <a class="pill" data-target="php" href="#php">Serveur PHP</a>
+        <a class="pill" data-target="nuxt" href="#nuxt">Client Nuxt</a>
+        <a class="pill" data-target="bdd" href="#bdd">Base MySQL</a>
+        <a class="pill" data-target="kits" href="#kits">KITs</a>
+        <a class="pill" data-target="git" href="#git">Git</a>
+      </div>
+
+      <!-- ===================== Prérequis ===================== -->
+      <h2 id="prerequis">Prérequis</h2>
+      <div class="cmd-item">
+        <h3>Vérifier les outils installés</h3>
+        <p class="muted">Chaque commande doit afficher un numéro de version.</p>
+        <div class="cmd" data-label="Terminal">
+<pre><code>node -v
+npm -v
+php -v
+composer -V
+mysql --version</code></pre>
+        </div>
+      </div>
+      <div class="cmd-item">
+        <h3>Choisir la version de Node.js (nvm)</h3>
+        <p class="muted">Utile si plusieurs versions de Node sont installées.</p>
+        <div class="cmd" data-label="Terminal">
+<pre><code>nvm list
+nvm use &lt;version&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- ===================== PHP ===================== -->
+      <h2 id="php">Serveur PHP (backend et landing pages)</h2>
+      <div class="cmd-item">
+        <h3>Installer les dépendances</h3>
+        <div class="cmd" data-label="Terminal">
+<pre><code><span class="c"># à adapter : chemin du projet</span>
+cd chemin\vers\kontiki-ws-collections
+composer install
+
+<span class="c"># seulement si phpdotenv n'est pas déjà dans composer.json</span>
+composer require vlucas/phpdotenv</code></pre>
+        </div>
+      </div>
+      <div class="cmd-item">
+        <h3>Préparer le fichier .env</h3>
+        <p class="muted">Les identifiants ne doivent plus être écrits en dur dans le code. Crée un fichier <code>.env</code> à la racine du projet PHP, avec les noms de variables que ton code lit.</p>
+        <div class="cmd" data-label=".env · à adapter">
+<pre><code><span class="c"># exemple de forme, remplace par tes propres variables</span>
+NOM_VARIABLE=valeur</code></pre>
+        </div>
+        <div class="note">
+          <strong>Ne jamais publier le .env</strong>
+          Ajoute <code>.env</code> dans le fichier <code>.gitignore</code> avant tout <code>git push</code>.
+        </div>
+      </div>
+      <div class="cmd-item">
+        <h3>Démarrer le serveur intégré</h3>
+        <p class="muted">Les liens des KITs pointent vers <code>127.0.0.1:8200</code> : c'est ce serveur qui sert les landing pages.</p>
+        <div class="cmd" data-label="Terminal">
+<pre><code>php -S 127.0.0.1:8200</code></pre>
+        </div>
+      </div>
+      <div class="cmd-item">
+        <h3>Afficher les erreurs PHP (pour éviter les pages blanches)</h3>
+        <div class="cmd" data-label="Terminal">
+<pre><code>php -d display_errors=1 -d error_reporting=E_ALL -S 127.0.0.1:8200</code></pre>
+        </div>
+      </div>
+      <div class="cmd-item">
+        <h3>Tester qu'un endpoint répond</h3>
+        <p class="muted">Affiche le code HTTP et les en-têtes, sans télécharger la page.</p>
+        <div class="cmd" data-label="Terminal">
+<pre><code>curl -i http://127.0.0.1:8200/api/insert.php</code></pre>
+        </div>
+      </div>
+
+      <!-- ===================== Nuxt ===================== -->
+      <h2 id="nuxt">Client Nuxt (Leadit)</h2>
+      <div class="cmd-item">
+        <h3>Installer et lancer en développement</h3>
+        <div class="cmd" data-label="Terminal">
+<pre><code><span class="c"># à adapter : chemin du projet</span>
+cd chemin\vers\LEAD-IT
+npm install
+npm run dev</code></pre>
+        </div>
+        <p class="muted">Le projet est une SPA avec une <code>baseURL</code> en <code>/leadit/3.17/</code> : l'adresse et le port exacts s'affichent dans le terminal, ajoute ce préfixe si besoin.</p>
+      </div>
+      <div class="cmd-item">
+        <h3>Indiquer l'adresse de l'API (variable d'environnement)</h3>
+        <p class="muted">Dans le fichier <code>.env</code> du projet Nuxt. L'adresse est lue par <code>runtimeConfig.public.apiBackend</code>.</p>
+        <div class="cmd" data-label=".env · Nuxt">
+<pre><code>NUXT_PUBLIC_API_BACKEND=&lt;adresse de l'API&gt;</code></pre>
+        </div>
+      </div>
+      <div class="cmd-item">
+        <h3>Générer la version à déployer</h3>
+        <div class="cmd" data-label="Terminal">
+<pre><code>npm run generate
+npm run preview</code></pre>
+        </div>
+        <p class="muted">Le résultat se trouve dans <code>.output/public</code>. Pour un site généré, la valeur du <code>.env</code> est prise au moment de la génération.</p>
+      </div>
+
+      <!-- ===================== BDD ===================== -->
+      <h2 id="bdd">Base de données MySQL</h2>
+      <div class="cmd-item">
+        <h3>Se connecter et explorer</h3>
+        <div class="cmd" data-label="Terminal">
+<pre><code>mysql -u root -p</code></pre>
+        </div>
+        <div class="cmd" data-label="MySQL · à adapter">
+<pre><code>SHOW DATABASES;
+USE &lt;nom_base&gt;;
+SHOW TABLES;
+SELECT COUNT(*) FROM &lt;nom_table&gt;;</code></pre>
+        </div>
+      </div>
+      <div class="cmd-item">
+        <h3>Sauvegarder et restaurer</h3>
+        <div class="cmd" data-label="Terminal · à adapter">
+<pre><code>mysqldump -u root -p &lt;nom_base&gt; &gt; sauvegarde.sql
+mysql -u root -p &lt;nom_base&gt; &lt; sauvegarde.sql</code></pre>
+        </div>
+      </div>
+
+      <!-- ===================== KITs ===================== -->
+      <h2 id="kits">KITs emailing</h2>
+      <div class="cmd-item">
+        <h3>Prévisualiser un KIT en local</h3>
+        <p class="muted">Ouvre le fichier dans le navigateur. Les images doivent se trouver dans le dossier <code>images/</code> à côté du fichier.</p>
+        <div class="cmd" data-label="PowerShell">
+<pre><code>start kit-mutuelle.html</code></pre>
+        </div>
+        <div class="note teal">
+          <strong>Pour tester le clic</strong>
+          Les boutons mènent vers <code>127.0.0.1:8200</code> : lance d'abord le serveur PHP ci-dessus.
+        </div>
+      </div>
+
+      <!-- ===================== Git ===================== -->
+      <h2 id="git">Git</h2>
+      <div class="cmd-item">
+        <h3>Envoyer ses modifications</h3>
+        <div class="cmd" data-label="Terminal">
+<pre><code>git status
+git add .
+git commit -m "Description de la modification"
+git push origin master</code></pre>
+        </div>
+        <p class="muted">Remplace <code>master</code> par <code>main</code> si c'est le nom de ta branche.</p>
+      </div>
+      <div class="cmd-item">
+        <h3>Récupérer les changements des autres</h3>
+        <div class="cmd" data-label="Terminal">
+<pre><code>git pull origin master</code></pre>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speech — Projet Leads</title>
+  <script>try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="speech">
+  <div id="app-nav"></div>
+
+  <main class="main">
+    <div class="content">
+
+      <span class="eyebrow hide-focus">02 · Speech</span>
+      <h1 class="hide-focus">Le texte de la soutenance</h1>
+      <p class="lead hide-focus">Un texte à dire, pas à lire mot pour mot. Les passages <span class="todo">[entre crochets]</span> sont à compléter avec tes informations. Les lignes bleues sont des indications de scène.</p>
+
+      <div class="pills">
+        <a class="pill" data-target="intro" href="#intro">Introduction</a>
+        <a class="pill" data-target="objectif" href="#objectif">Objectif</a>
+        <a class="pill" data-target="methode" href="#methode">Méthode</a>
+        <a class="pill" data-target="architecture" href="#architecture">Architecture</a>
+        <a class="pill" data-target="technologie" href="#technologie">Technologie</a>
+        <a class="pill" data-target="demo" href="#demo">Démonstration</a>
+        <a class="pill" data-target="conclusion" href="#conclusion">Conclusion</a>
+        <a class="pill" data-target="merci" href="#merci">Remerciement</a>
+        <a class="pill" data-target="jury" href="#jury">Questions du jury</a>
+      </div>
+
+      <div class="toolbar">
+        <button class="tbtn" id="fs-minus" type="button" aria-label="Réduire le texte">A−</button>
+        <button class="tbtn" id="fs-plus" type="button" aria-label="Agrandir le texte">A+</button>
+        <button class="tbtn" id="focus" type="button">Mode lecture</button>
+        <span class="spacer"></span>
+        <span class="total" id="total"></span>
+      </div>
+
+      <!-- 1 -->
+      <section class="speech-block" id="intro">
+        <div class="speech-head"><span class="n">01</span><h2>Introduction</h2><span class="chip rt"></span></div>
+        <p class="say">Bonjour à toutes et à tous. Je m'appelle <span class="todo">[Prénom Nom]</span>, et je vais vous présenter mon mémoire : la conception et le déploiement d'un système de collecte, de gestion et de distribution de leads.</p>
+        <p class="say">Avant d'aller plus loin, une question simple : qu'est-ce qu'un lead ? C'est une personne qui s'est intéressée à un produit ou à un service, et qui a laissé ses coordonnées. Pour une entreprise, c'est une opportunité commerciale. Pour celui qui les génère, c'est quelque chose qu'on peut livrer à des partenaires.</p>
+        <p class="say">Mon travail répond à une question : comment passer, de façon organisée, d'un simple email envoyé à un client, jusqu'à un lead livré à un partenaire ? Je vais vous présenter l'objectif, la méthode, l'architecture et les technologies, puis je terminerai par une démonstration.</p>
+        <p class="cue">→ Transition : « Commençons par l'objectif du projet. »</p>
+      </section>
+
+      <!-- 2 -->
+      <section class="speech-block" id="objectif">
+        <div class="speech-head"><span class="n">02</span><h2>Objectif</h2><span class="chip rt"></span></div>
+        <p class="say">L'objectif est de construire une chaîne complète, de bout en bout. Elle repose sur trois besoins.</p>
+        <p class="say">Premièrement, collecter : attirer des contacts et recueillir leurs informations de façon fiable. Deuxièmement, gérer : centraliser ces informations, les retrouver, les suivre. Et troisièmement, distribuer : livrer ces leads aux partenaires qui les achètent.</p>
+        <p class="say">Plutôt que d'avoir des outils séparés pour chaque étape, l'idée est de relier toute la chaîne dans un seul système. <span class="todo">[Ajouter ici le contexte de départ : comment cela se passait avant, ce qui posait problème.]</span></p>
+        <p class="cue">→ Transition : « Voyons maintenant comment cela fonctionne concrètement. »</p>
+      </section>
+
+      <!-- 3 -->
+      <section class="speech-block" id="methode">
+        <div class="speech-head"><span class="n">03</span><h2>Méthode</h2><span class="chip rt"></span></div>
+        <p class="say">La méthode suit le parcours du client, en cinq étapes.</p>
+        <p class="say">D'abord, nous envoyons des KITs : ce sont des emails HTML, conçus pour s'afficher correctement aussi bien sur ordinateur que sur mobile. Ensuite, le client clique sur le bouton du KIT et arrive sur une landing page. Il y remplit un formulaire, et c'est cette validation qui le transforme en lead.</p>
+        <p class="say">Les leads sont alors gérés dans un projet dédié, que j'ai appelé Leadit : on peut les consulter, les suivre et les exporter. Enfin, ils sont livrés aux partenaires, qui achètent ces leads.</p>
+        <p class="cue">→ Au clic suivant : afficher le schéma de la méthode. Pointer chaque étape en la citant.</p>
+        <p class="cue">→ Transition : « Pour que ce parcours fonctionne, il faut une architecture solide. »</p>
+      </section>
+
+      <!-- 4 -->
+      <section class="speech-block" id="architecture">
+        <div class="speech-head"><span class="n">04</span><h2>Architecture</h2><span class="chip rt"></span></div>
+        <p class="say">La solution suit une architecture client-serveur en plusieurs couches <span class="todo">[à valider avec ton encadrant]</span>.</p>
+        <p class="say">En bas, la base de données, qui stocke les leads. Au-dessus, un contrôleur de routes en PHP : il reçoit les demandes, applique les règles et dialogue avec la base. Plus haut, le client Nuxt, qui appelle ce serveur. Et tout en haut, l'interface que l'utilisateur voit et manipule.</p>
+        <p class="say">Chaque couche a un rôle précis, ce qui permet de modifier l'une sans casser les autres.</p>
+        <p class="cue">→ Transition : « Voyons maintenant les technologies derrière chaque couche. »</p>
+      </section>
+
+      <!-- 5 -->
+      <section class="speech-block" id="technologie">
+        <div class="speech-head"><span class="n">05</span><h2>Technologie</h2><span class="chip rt"></span></div>
+        <p class="say">Trois technologies principales. PHP pour le serveur et les routes. Nuxt 3 pour le client et l'interface. MySQL pour la base de données.</p>
+        <p class="say">À cela s'ajoutent quelques outils : Composer pour gérer les dépendances PHP, une bibliothèque pour générer les exports Excel, et une plateforme d'envoi pour diffuser les KITs par email.</p>
+        <p class="say"><span class="todo">[Expliquer en une phrase pourquoi ces choix : simplicité, maîtrise de la technologie, compatibilité avec l'existant…]</span></p>
+        <p class="cue">→ Transition : « Passons maintenant à la démonstration. »</p>
+      </section>
+
+      <!-- 6 -->
+      <section class="speech-block" id="demo">
+        <div class="speech-head"><span class="n">06</span><h2>Démonstration</h2><span class="chip rt"></span></div>
+        <p class="say">Je vais vous montrer le parcours complet, tel que le vivrait un client.</p>
+        <p class="cue">→ 1. Ouvrir un KIT dans le navigateur ou la boîte mail.</p>
+        <p class="say">Voici un KIT tel qu'il est reçu. Il est responsive : il s'adapte à la taille de l'écran. Je clique sur le bouton d'appel à l'action.</p>
+        <p class="cue">→ 2. La landing page s'ouvre. Remplir le formulaire avec des données de test.</p>
+        <p class="say">J'arrive sur la landing page. Je remplis le formulaire et je valide : à cet instant, le client devient un lead.</p>
+        <p class="cue">→ 3. Ouvrir Leadit et retrouver le lead qui vient d'être créé.</p>
+        <p class="say">Dans Leadit, je retrouve immédiatement ce lead, avec les informations saisies.</p>
+        <p class="cue">→ 4. Lancer l'export Excel.</p>
+        <p class="say">Enfin, je peux exporter les leads dans un fichier Excel, prêt à être livré à un partenaire.</p>
+        <div class="note hide-focus">
+          <strong>Plan B</strong>
+          Si la démonstration ne fonctionne pas : « Je vous propose de poursuivre avec des captures d'écran. » Avoir les images ou une courte vidéo prêtes à l'avance.
+        </div>
+        <p class="cue">→ Transition : « Pour conclure… »</p>
+      </section>
+
+      <!-- 7 -->
+      <section class="speech-block" id="conclusion">
+        <div class="speech-head"><span class="n">07</span><h2>Conclusion</h2><span class="chip rt"></span></div>
+        <p class="say">Pour conclure : ce projet relie en un seul système la collecte, la gestion et la distribution des leads, depuis l'envoi d'un KIT jusqu'à la livraison au partenaire.</p>
+        <p class="say"><span class="todo">[Bilan personnel : ce que le projet t'a apporté, une difficulté rencontrée et surmontée.]</span></p>
+        <p class="say"><span class="todo">[Limites actuelles, en une phrase honnête.]</span> Et pour la suite, plusieurs pistes : <span class="todo">[améliorations possibles : suivi des performances des KITs, nouveaux types de landing pages, automatisation de la livraison…]</span></p>
+        <p class="cue">→ Transition : « Je termine par quelques remerciements. »</p>
+      </section>
+
+      <!-- 8 -->
+      <section class="speech-block" id="merci">
+        <div class="speech-head"><span class="n">08</span><h2>Remerciement</h2><span class="chip rt"></span></div>
+        <p class="say">Je tiens à remercier <span class="todo">[mon encadrant]</span> pour son accompagnement, <span class="todo">[l'entreprise / l'équipe]</span> pour sa confiance, les membres du jury pour leur attention, ainsi que mes proches pour leur soutien.</p>
+        <p class="say">Merci de votre attention. Je suis maintenant à votre disposition pour vos questions.</p>
+      </section>
+
+      <!-- Questions du jury -->
+      <section class="speech-block" id="jury">
+        <div class="speech-head"><span class="n">+</span><h2>Questions probables du jury</h2></div>
+        <p class="muted">À préparer en une ou deux phrases chacune. Les pistes ci-dessous sont à adapter à ce que tu as réellement fait.</p>
+
+        <details class="q"><summary>Pourquoi avoir choisi Nuxt 3, PHP et MySQL ?</summary>
+          <div class="body"><p>Pistes : technologies déjà maîtrisées, adaptées à une application web de gestion, faciles à héberger. Cite un avantage concret de chacune.</p></div></details>
+
+        <details class="q"><summary>Comment sont protégées les données personnelles des leads ?</summary>
+          <div class="body"><p>Pistes : consentement et mentions légales (le lien est dans chaque KIT), identifiants hors du code grâce au fichier <code>.env</code>, accès à Leadit par connexion. <span class="todo">[Compléter avec ce que tu as mis en place, et le RGPD.]</span></p></div></details>
+
+        <details class="q"><summary>Comment évitez-vous les doublons de leads ?</summary>
+          <div class="body"><p><span class="todo">[À compléter selon ton implémentation : vérification d'email ou de téléphone, règle de dédoublonnage… Si ce n'est pas encore fait, présente-le comme une amélioration prévue.]</span></p></div></details>
+
+        <details class="q"><summary>Que se passe-t-il si le nombre de leads augmente fortement ?</summary>
+          <div class="body"><p>Pistes : séparation en couches (on peut faire évoluer chacune), index sur la base de données, pagination côté interface. <span class="todo">[Adapter.]</span></p></div></details>
+
+        <details class="q"><summary>Comment mesurez-vous la réussite du système ?</summary>
+          <div class="body"><p>Pistes : nombre de leads générés par KIT, taux de clics, taux de validation du formulaire. <span class="todo">[Dire ce qui est déjà mesuré, et ce qui est prévu.]</span></p></div></details>
+
+        <details class="q"><summary>Pourquoi des KITs en HTML sous forme de tableaux ?</summary>
+          <div class="body"><p>Les clients de messagerie gèrent mal le HTML et le CSS modernes : une structure en tableaux avec du style en ligne s'affiche de façon plus fiable d'un client mail à l'autre.</p></div></details>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
